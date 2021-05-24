@@ -1,0 +1,8 @@
+[package]
+name = "rust autograder"
+version = "0.1.0"
+authors = ["welby"]
+edition = "2021"
+
+[dependencies]
+rand="0.7.3"
