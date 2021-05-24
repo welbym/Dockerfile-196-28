@@ -1,5 +1,5 @@
 [package]
-name = "rust autograder"
+name = "rust-autograder"
 version = "0.1.0"
 authors = ["welby"]
 edition = "2021"
