@@ -9,8 +9,8 @@ COPY Cargo.lock .
 COPY Cargo.toml .
 RUN mkdir .cargo
 
-COPY ./src src
 RUN cargo build --release
+COPY ./src src
 RUN cargo install --path . --verbose
 
 RUN cargo vendor > .cargo/config
