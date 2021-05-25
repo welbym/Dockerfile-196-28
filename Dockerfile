@@ -7,6 +7,7 @@ FROM rust:1.52 as cargo-build
 WORKDIR /usr/src/app
 COPY Cargo.lock .
 COPY Cargo.toml .
+COPY src/main.rs .
 RUN mkdir .cargo
 
 RUN cargo build --release

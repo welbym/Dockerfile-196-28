@@ -6,3 +6,7 @@ edition = "2018"
 
 [dependencies]
 rand="*"
+
+[[bin]]
+name = "main"
+path = "/usr/src/app/main.rs"
