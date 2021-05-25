@@ -2,7 +2,7 @@
 # Cargo Build Stage
 # -----------------
 
-FROM rust:1.39 as cargo-build
+FROM rust:1.52 as cargo-build
 
 WORKDIR /usr/src/app
 COPY Cargo.lock .
@@ -21,6 +21,6 @@ RUN cargo vendor > .cargo/config
 
 FROM debian:stable-slim
 
-COPY --from=cargo-build /usr/local/cargo/bin/my_binary /bin
+COPY --from=cargo-build /usr/local/cargo/bin/rust-autograder /bin
 
-CMD ["my_binary"]
+CMD ["rust-autograder"]
