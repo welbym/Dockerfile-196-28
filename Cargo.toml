@@ -9,4 +9,4 @@ rand="*"
 
 [[bin]]
 name = "main"
-path = "/usr/src/app/main.rs"
+path = "/usr/src/rust-autograder/main.rs"
