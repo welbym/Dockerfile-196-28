@@ -1,12 +1,13 @@
 [package]
-name = "rust-autograder"
+name = "rust-grader"
 version = "0.1.0"
-authors = ["welby"]
-edition = "2018"
+authors = ["andrea <akroy2@illinois.edu>"]
 
 [dependencies]
-rand="*"
-
-[[bin]]
-name = "main"
-path = "/usr/src/rust-autograder/main.rs"
+structopt = "0.2.10"
+pathdiff = "0.1.0"
+chrono = "0.4"
+libc = "0.2"
+users = "0.9"
+groups = "0.1.1"
+pretty-bytes = "0.2"

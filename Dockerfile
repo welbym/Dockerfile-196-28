@@ -9,7 +9,7 @@ RUN apk upgrade
 WORKDIR /home
 
 # install Rust and Cargo
-RUN apk add rust cargo
+RUN apk add --no-cache rust cargo
 
 # Install python3 and pip
 RUN apk add --no-cache python3 py3-pip
