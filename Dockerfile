@@ -1,51 +1,34 @@
-# -----------------
-# Cargo Build Stage
-# -----------------
+# pull from the latest Alpine image
+FROM alpine:latest
 
-FROM rust:1.52 as cargo-build
+# update and upgrade the Alpine package manager
+RUN apk update
+RUN apk upgrade 
 
-WORKDIR /usr/src/rust-autograder
-COPY Cargo.lock .
-COPY Cargo.toml .
-COPY src/main.rs .
-RUN mkdir .cargo
+# set the working directory to /home
+WORKDIR /home
 
-RUN cargo build --release
-COPY ./src src
-RUN cargo install --path . --verbose
+# install Rust and Cargo
+RUN apk add rust cargo
 
-RUN cargo vendor > .cargo/config
+# Install python3 and pip
+RUN apk add --no-cache python3 py3-pip
 
-# -----------------
-# Final Stage
-# -----------------
+# create a project to grade rust assignments
+# when grading, copy source files to this folder
+RUN cargo new rust-grader
 
-FROM debian:stable-slim
+# add any required dependencies for grading to Cargo.toml
+# run cargo build to compile required dependencies
+# when the student source files are copied over, the binaries will already be built.
+# source: https://stackoverflow.com/a/42139535
+ADD Cargo.toml /rust-grader/Cargo.toml
+RUN cd rust-grader && cargo build
 
-COPY --from=cargo-build /usr/local/cargo/bin/rust-autograder /usr/local/bin/rust-autograder
+# create a folder to grade python assignments
+# when grading, copy source files to this folder
+RUN mkdir python-grader
 
-CMD ["rust-autograder"]
-
-# -----------------
-# Python Stage
-# -----------------
-
-FROM centos:7
-
-# Needed for AWS to properly handle UTF-8
-ENV PYTHONIOENCODING=UTF-8
-
-COPY python-requirements.txt /
-
-RUN echo "installing python and curl" \
-        && yum -y install \
-        git \
-        python3 \
-        python3-pip \
-        python3-devel \
-        curl \
-        && yum clean all
-RUN echo "setting up python3..." \
-    && python3 -m pip install --no-cache-dir -r /python-requirements.txt
-
-CMD /bin/bash 
+# install required python dependencies with pip
+ADD requirements.txt /python-grader/requirements.txt
+RUN pip3 install -r /python-grader/requirements.txt
