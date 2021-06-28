@@ -1,0 +1,8 @@
+{
+    "test_get_winner": 2,
+    "test_x_goes_first": 1,
+    "test_o_winner": 2,
+    "test_play_on_same_square": 2,
+    "test_play_after_win": 1,
+    "test_move_out_of_turn": 2
+}
