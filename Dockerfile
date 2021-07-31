@@ -1,6 +1,9 @@
 # pull from the latest Alpine image
 FROM alpine:latest
 
+# set the user env variable
+ENV USER='grader'
+
 # update and upgrade the Alpine package manager
 RUN apk update
 RUN apk upgrade 
@@ -22,10 +25,10 @@ RUN cargo new home/rust-grader
 ADD Cargo.toml home/rust-grader/Cargo.toml
 RUN cd home/rust-grader && cargo build
 
-# create a folder to grade python assignments
-# when grading, copy source files to this folder
-RUN mkdir home/python-grader
-
 # install required python dependencies with pip
 ADD requirements.txt home/python-grader/requirements.txt
 RUN pip3 install -r home/python-grader/requirements.txt
+
+# copy run-test.sh script to /bin
+ADD run-test.sh /bin/run-test
+RUN chmod 755 /bin/run-test
