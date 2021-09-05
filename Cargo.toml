@@ -1,5 +1,5 @@
 [package]
-name = "rust-grader"
+name = "dummy_project"
 version = "0.1.0"
 authors = ["andrea <akroy2@illinois.edu>"]
 
@@ -12,3 +12,5 @@ users = "0.11.0"
 groups = "0.1.1"
 pretty-bytes = "0.2"
 dialoguer="*"
+rand = "*"
+text_io = "*"
