@@ -72,5 +72,5 @@ def convert_to_pl_json(input_json: str, test_values_json: str) -> dict:
                     results.append(test_result.TestResult(j, point_values[j['name']]))
                 elif j['type'] == 'suite':
                     passed, failed = get_test_summary(j)
-    score = sum((test.score() for test in results))
+    score = sum((test.score() for test in results)) / len(results)
     return construct_output(score, passed, failed, results, warnings, build_successful)
