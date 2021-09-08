@@ -7,3 +7,4 @@ authors = ["andrea <akroy2@illinois.edu>"]
 structopt = "*"
 rand = "*"
 text_io = "*"
+itertools = "*"
