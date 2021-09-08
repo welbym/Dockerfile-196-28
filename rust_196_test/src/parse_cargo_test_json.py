@@ -26,18 +26,18 @@ def construct_output(score: int, passed: int, failed: int,
     if build_successful:
         if warnings:
             output['message'] = ('Build was successful, but there were warnings! '
-                f'{passed} tests passed, {failed} tests failed.')
+                f'{passed} tests passed, {failed} tests failed.\n')
         else:
             output['message'] = ('Build was successful! '
-                f'{passed} tests passed, {failed} tests failed.')
+                f'{passed} tests passed, {failed} tests failed.\n')
         output['score'] = score
     else:
         output['message'] = ('Build was unsuccessful! Tests did not run. '
-            'Please fix the relevant errors and try to run your solution again.')
+            'Please fix the relevant errors and try to run your solution again.\n')
         output['score'] = 0
     
     warnings.sort(key=lambda x: x.level)
-    output['output'] = '\n'.join([str(warning) for warning in warnings])
+    output['message'] += '\n'.join([str(warning) for warning in warnings])
     output['tests'] = [test.to_dict() for test in results]
     return output
 
