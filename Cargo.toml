@@ -4,7 +4,14 @@ version = "0.1.0"
 authors = ["andrea <akroy2@illinois.edu>"]
 
 [dependencies]
-structopt = "*"
+structopt = "0.3.21"
+pathdiff = "0.2.0"
+chrono = "0.4"
+libc = "0.2"
+users = "0.11.0"
+groups = "0.1.1"
+pretty-bytes = "0.2"
+dialoguer="*"
 rand = "*"
 text_io = "*"
 itertools = "*"
