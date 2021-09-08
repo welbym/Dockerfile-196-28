@@ -27,5 +27,4 @@ RUN pip3 install -r /home/rust_196_test/requirements.txt
 # when the student source files are copied over, the binaries will already be built
 # source: https://stackoverflow.com/a/42139535
 ADD Cargo.toml /home/dummy_project/Cargo.toml
-RUN cd /home/dummy_project && cargo build
-RUN cargo check
+RUN cd /home/dummy_project && cargo build && cargo check
