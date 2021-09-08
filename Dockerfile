@@ -28,3 +28,4 @@ RUN pip3 install -r /home/rust_196_test/requirements.txt
 # source: https://stackoverflow.com/a/42139535
 ADD Cargo.toml /home/dummy_project/Cargo.toml
 RUN cd /home/dummy_project && cargo build
+RUN cargo check
